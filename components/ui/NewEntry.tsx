@@ -3,15 +3,15 @@ import { Box, Button, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 
-import { EntriesContext } from '../../context/entries/EntriesContext';
-import { UIContext } from '../../context/ui/UIContext';
+import { EntriesContext } from '../../context/entries';
+import { UIContext } from '../../context/ui';
 
 export const NewEntry = () => {
   const { addNewEntry } = useContext(EntriesContext);
   const { isAddingEntry, setIsAddingEntry } = useContext(UIContext);
   const [inputValue, setInputValue] = useState('');
   const [touched, setTouched] = useState(false);
-  const onTextFieldChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onTextFieldChanged = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
   const onSave = () => {
@@ -33,12 +33,10 @@ export const NewEntry = () => {
             autoFocus
             multiline
             label="Nueva entrada"
-            helperText={
-              inputValue.length <= 0 && touched && '"Ingrese un valor"'
-            }
+            helperText={inputValue.length <= 0 && touched && 'Ingrese un valor'}
             error={inputValue.length <= 0 && touched}
             value={inputValue}
-            onChange={onTextFieldChange}
+            onChange={onTextFieldChanged}
             onBlur={() => setTouched(true)}
           />
           <Box display="flex" justifyContent="space-between">
@@ -62,7 +60,7 @@ export const NewEntry = () => {
           variant="outlined"
           onClick={() => setIsAddingEntry(true)}
         >
-          Agregar tárea
+          Agregar Tarea
         </Button>
       )}
     </Box>

@@ -2,14 +2,14 @@ import { DragEvent, FC, useContext, useMemo } from 'react';
 import { List, Paper } from '@mui/material';
 
 import { EntriesContext } from '../../context/entries';
-import { UIContext } from '../../context/ui/';
-import { entryStatus } from '../../interfaces';
+import { UIContext } from '../../context/ui';
+import { EntryStatus } from '../../interfaces';
 import { EntryCard } from './';
 
 import styles from './EntryList.module.css';
 
 interface Props {
-  status: entryStatus;
+  status: EntryStatus;
 }
 
 export const EntryList: FC<Props> = ({ status }) => {

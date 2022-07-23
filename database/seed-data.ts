@@ -16,14 +16,12 @@ export const seedData: SeedData = {
       createdAt: Date.now(),
     },
     {
-      description:
-        'En Curso: Cupidatat commodo reprehenderit enim nisi aute incididunt.',
+      description: 'En Curso: Cupidatat commodo reprehenderit enim nisi aute incididunt.',
       status: 'in-progress',
       createdAt: Date.now() - 1000000,
     },
     {
-      description:
-        'Finalizada: Lorem ut id dolore voluptate laboris anim culpa adipisicing qui.',
+      description: 'Finalizada: Lorem ut id dolore voluptate laboris anim culpa adipisicing qui.',
       status: 'finished',
       createdAt: Date.now() - 100000,
     },

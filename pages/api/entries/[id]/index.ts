@@ -6,10 +6,7 @@ import { Entry, IEntry } from '../../../../models';
 
 type Data = { message: string } | IEntry;
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   const { id } = req.query;
 
   if (!mongoose.isValidObjectId(id)) {
@@ -24,9 +21,7 @@ export default function handler(
       return getEntry(req, res);
 
     default:
-      return res
-        .status(400)
-        .json({ message: 'Método no existe ' + req.method });
+      return res.status(400).json({ message: 'Método no existe ' + req.method });
   }
 }
 
@@ -38,9 +33,7 @@ const getEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await db.disconnect();
 
   if (!entryInDB) {
-    return res
-      .status(400)
-      .json({ message: 'No hay entrada con ese ID: ' + id });
+    return res.status(400).json({ message: 'No hay entrada con ese ID: ' + id });
   }
 
   return res.status(200).json(entryInDB);
@@ -54,22 +47,13 @@ const updateEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   if (!entryToUpdate) {
     await db.disconnect();
-    return res
-      .status(400)
-      .json({ message: 'No hay entrada con ese ID: ' + id });
+    return res.status(400).json({ message: 'No hay entrada con ese ID: ' + id });
   }
 
-  const {
-    description = entryToUpdate.description,
-    status = entryToUpdate.status,
-  } = req.body;
+  const { description = entryToUpdate.description, status = entryToUpdate.status } = req.body;
 
   try {
-    const updatedEntry = await Entry.findByIdAndUpdate(
-      id,
-      { description, status },
-      { runValidators: true, new: true }
-    );
+    const updatedEntry = await Entry.findByIdAndUpdate(id, { description, status }, { runValidators: true, new: true });
     // entryToUpdate.description = description;
     // entryToUpdate.status = status;
     // await entryToUpdate.save();

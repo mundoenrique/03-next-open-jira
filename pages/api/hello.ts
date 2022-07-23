@@ -7,10 +7,7 @@ type Data = {
   method: string;
 };
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   res.status(200).json({
     ok: true,
     message: 'Todo correcto',

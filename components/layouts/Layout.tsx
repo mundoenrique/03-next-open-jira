@@ -5,7 +5,7 @@ import { Box } from '@mui/material';
 import { Navbar, Sidebar } from '../ui';
 
 interface Props {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   title?: string;
 }
 

@@ -17,14 +17,13 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  console.log({ req: req.nextUrl.pathname });
   return NextResponse.next();
 }
 
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
-    //'/api/:path*',
+    // '/api/:path*',
     '/api/entries/:path*',
   ],
 };

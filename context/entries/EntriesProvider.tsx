@@ -1,9 +1,8 @@
 import { FC, useEffect, useReducer } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
+import { entriesApi } from '../../apis';
 import { Entry } from '../../interfaces';
 import { EntriesContext, entriesReducer } from './';
-import { entriesApi } from '../../apis';
 
 interface Props {
   children: JSX.Element;
@@ -36,13 +35,14 @@ export const EntriesProvider: FC<Props> = ({ children }) => {
       console.log({ error });
     }
   };
-  const refresEntries = async () => {
+
+  const refreshEntries = async () => {
     const { data } = await entriesApi.get<Entry[]>('/entries');
     dispatch({ type: '[Entry] Refresh-Data', payload: data });
   };
 
   useEffect(() => {
-    refresEntries();
+    refreshEntries();
   }, []);
 
   return (

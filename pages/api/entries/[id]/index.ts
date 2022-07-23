@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import mongoose from 'mongoose';
-import { db } from '../../../database';
-import { Entry, IEntry } from '../../../models';
+
+import { db } from '../../../../database';
+import { Entry, IEntry } from '../../../../models';
 
 type Data = { message: string } | IEntry;
 
@@ -12,17 +13,20 @@ export default function handler(
   const { id } = req.query;
 
   if (!mongoose.isValidObjectId(id)) {
-    res.status(400).json({ message: 'El id no es válido ' + id });
+    return res.status(400).json({ message: 'El id no es válido ' + id });
   }
 
   switch (req.method) {
     case 'PUT':
       return updateEntry(req, res);
+
     case 'GET':
       return getEntry(req, res);
 
     default:
-      return res.status(400).json({ message: 'Método no existe' });
+      return res
+        .status(400)
+        .json({ message: 'Método no existe ' + req.method });
   }
 }
 

@@ -11,11 +11,9 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res
-    .status(200)
-    .json({
-      ok: true,
-      message: 'Todo Correcto',
-      method: req.method || 'Sin método',
-    });
+  res.status(200).json({
+    ok: true,
+    message: 'Todo correcto',
+    method: req.method || 'no hay método',
+  });
 }

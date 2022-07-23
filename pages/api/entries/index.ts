@@ -26,11 +26,10 @@ const getEntries = async (res: NextApiResponse<Data>) => {
   const entries = await Entry.find().sort({ createdAt: 'ascending' });
   await db.disconnect();
 
-  res.status(200).json(entries);
+  return res.status(200).json(entries);
 };
 
 const postEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  console.log(req.body);
   const { description = '' } = req.body;
   const newEntry = new Entry({
     description,
@@ -45,9 +44,9 @@ const postEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     return res.status(201).json(newEntry);
   } catch (error) {
     await db.disconnect();
-    console.error(error);
+    console.log(error);
     return res
       .status(500)
-      .json({ message: 'Algo salio mal. revisar consola del servidor' });
+      .json({ message: 'Algo salio mal, revisar consola del servidor' });
   }
 };

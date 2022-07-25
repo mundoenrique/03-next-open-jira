@@ -21,8 +21,8 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 import { EntriesContext } from '../../context/entries';
 import { dbEntries } from '../../database';
-import { Layout } from '../../components/layouts/Layout';
-import { EntryStatus, Entry } from '../../interfaces/entry';
+import { Layout } from '../../components/layouts';
+import { Entry, EntryStatus } from '../../interfaces';
 import { dateFunctions } from '../../utils';
 
 const validStatus: EntryStatus[] = ['pending', 'in-progress', 'finished'];
@@ -40,7 +40,7 @@ export const EntryPage: FC<Props> = ({ entry }) => {
   const onInputValueChanged = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
-  const onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onStatusChanged = (event: ChangeEvent<HTMLInputElement>) => {
     setStatus(event.target.value as EntryStatus);
   };
   const onSave = () => {
@@ -69,17 +69,18 @@ export const EntryPage: FC<Props> = ({ entry }) => {
                 sx={{ marginTop: 2, marginBottom: 1 }}
                 fullWidth
                 placeholder="Nueva entrada"
+                autoFocus
                 multiline
-                label="Nueva etrada"
+                label="Nueva entrada"
                 value={inputValue}
+                onBlur={() => setTouched(true)}
                 onChange={onInputValueChanged}
                 helperText={isNotValid && 'Ingrese un valor'}
                 error={isNotValid}
-                onBlur={() => setTouched(true)}
               />
               <FormControl>
                 <FormLabel>Estado:</FormLabel>
-                <RadioGroup row value={status} onChange={onStatusChange}>
+                <RadioGroup row value={status} onChange={onStatusChanged}>
                   {validStatus.map((option) => (
                     <FormControlLabel key={option} value={option} control={<Radio />} label={capitalize(option)} />
                   ))}
@@ -100,7 +101,14 @@ export const EntryPage: FC<Props> = ({ entry }) => {
           </Card>
         </Grid>
       </Grid>
-      <IconButton sx={{ position: 'fixed', bottom: 30, right: 30, backgroundColor: 'error.dark' }}>
+      <IconButton
+        sx={{
+          position: 'fixed',
+          bottom: 30,
+          right: 30,
+          backgroundColor: 'error.dark',
+        }}
+      >
         <DeleteOutlinedIcon />
       </IconButton>
     </Layout>
@@ -124,7 +132,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 
   return {
-    props: { entry },
+    props: {
+      entry,
+    },
   };
 };
 

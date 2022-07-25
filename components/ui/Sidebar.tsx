@@ -1,14 +1,5 @@
 import { useContext } from 'react';
-import {
-  Box,
-  Divider,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-} from '@mui/material';
+import { Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 
@@ -28,13 +19,7 @@ export const Sidebar = () => {
         <List>
           {menuItems.map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 ? (
-                  <InboxOutlinedIcon />
-                ) : (
-                  <MailOutlineOutlinedIcon />
-                )}
-              </ListItemIcon>
+              <ListItemIcon>{index % 2 ? <InboxOutlinedIcon /> : <MailOutlineOutlinedIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -43,13 +28,7 @@ export const Sidebar = () => {
         <List>
           {menuItems.map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 ? (
-                  <InboxOutlinedIcon />
-                ) : (
-                  <MailOutlineOutlinedIcon />
-                )}
-              </ListItemIcon>
+              <ListItemIcon>{index % 2 ? <InboxOutlinedIcon /> : <MailOutlineOutlinedIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}

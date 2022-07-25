@@ -8,7 +8,7 @@ type Data = { message: string } | IEntry;
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   const { id } = req.query;
-
+  //Se hace del lado dle iddleware también
   if (!mongoose.isValidObjectId(id)) {
     return res.status(400).json({ message: 'El id no es válido ' + id });
   }

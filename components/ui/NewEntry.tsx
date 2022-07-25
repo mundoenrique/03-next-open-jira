@@ -44,23 +44,13 @@ export const NewEntry = () => {
             <Button variant="text" onClick={() => setIsAddingEntry(false)}>
               Cancelar
             </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              endIcon={<SaveOutlinedIcon />}
-              onClick={onSave}
-            >
+            <Button variant="outlined" color="secondary" endIcon={<SaveOutlinedIcon />} onClick={onSave}>
               Guardar
             </Button>
           </Box>
         </>
       ) : (
-        <Button
-          startIcon={<AddIcon />}
-          fullWidth
-          variant="outlined"
-          onClick={() => setIsAddingEntry(true)}
-        >
+        <Button startIcon={<AddIcon />} fullWidth variant="outlined" onClick={() => setIsAddingEntry(true)}>
           Agregar Tarea
         </Button>
       )}

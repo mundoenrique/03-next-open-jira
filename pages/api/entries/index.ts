@@ -5,10 +5,7 @@ import { Entry, IEntry } from '../../../models';
 
 type Data = { message: string } | IEntry[] | IEntry;
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case 'GET':
       return getEntries(res);
@@ -45,8 +42,6 @@ const postEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   } catch (error) {
     await db.disconnect();
     console.log(error);
-    return res
-      .status(500)
-      .json({ message: 'Algo salio mal, revisar consola del servidor' });
+    return res.status(500).json({ message: 'Algo salio mal, revisar consola del servidor' });
   }
 };

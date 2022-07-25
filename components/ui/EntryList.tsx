@@ -32,11 +32,7 @@ export const EntryList: FC<Props> = ({ status }) => {
   };
 
   return (
-    <div
-      onDrop={onDropEntry}
-      onDragOver={allowDrop}
-      className={isDragging ? styles.dragging : ''}
-    >
+    <div onDrop={onDropEntry} onDragOver={allowDrop} className={isDragging ? styles.dragging : ''}>
       <Paper
         sx={{
           height: 'calc(100vh - 180px)',
